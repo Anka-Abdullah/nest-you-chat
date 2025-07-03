@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.dev
+    container_name: chat-app-dev
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      - ../src:/app/src
+      - ../test:/app/test
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - DATABASE_URL=mongodb://mongodb:27017/chat-app-dev
+      - RABBITMQ_URL=amqp://rabbitmq:5672
+    depends_on:
+      - mongodb
+      - rabbitmq
+    networks:
+      - chat-network
+
+  mongodb:
+    image: mongo:6.0
+    container_name: chat-mongodb-dev
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_DATABASE=chat-app-dev
+    volumes:
+      - mongodb_dev_data:/data/db
+    networks:
+      - chat-network
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: chat-rabbitmq-dev
+    restart: unless-stopped
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    volumes:
+      - rabbitmq_dev_data:/var/lib/rabbitmq
+    networks:
+      - chat-network
+
+volumes:
+  mongodb_dev_data:
+  rabbitmq_dev_data:
+
+networks:
+  chat-network:
+    driver: bridge
