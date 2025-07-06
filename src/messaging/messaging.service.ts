@@ -23,7 +23,7 @@ export class MessagingService implements OnModuleInit, OnModuleDestroy {
     if (!this.channel) {
       throw new Error('Channel is not initialized');
     }
-    
+
     try {
       await this.channel.assertQueue(queue, { durable: false });
       this.channel.sendToQueue(queue, Buffer.from(JSON.stringify(msg)));

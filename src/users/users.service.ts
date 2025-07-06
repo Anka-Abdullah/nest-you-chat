@@ -35,10 +35,7 @@ export class UsersService {
     return this.userModel.findById(id).exec();
   }
 
-  async updateProfile(
-    id: string,
-    payload: Partial<UpdateUserDto>,
-  ): Promise<UserDocument> {
+  async updateProfile(id: string, payload: Partial<UpdateUserDto>): Promise<UserDocument> {
     const user = await this.userModel.findById(id);
     if (!user) throw new NotFoundException('User not found');
     if (payload.password) {

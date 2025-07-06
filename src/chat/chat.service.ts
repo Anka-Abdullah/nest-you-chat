@@ -1,10 +1,10 @@
- import { Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
 import { Message, MessageDocument } from './schemas/message.schema';
 import { MessagingService } from '../messaging/messaging.service';
- 
- @Injectable()
+
+@Injectable()
 export class ChatService {
   constructor(
     @InjectModel(Message.name) private msgModel: Model<MessageDocument>,
