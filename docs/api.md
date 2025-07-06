@@ -5,23 +5,23 @@
 ### POST /api/register
 
 Register new user
-\`\`\`json
+json
 {
 "username": "john_doe",
 "email": "john@example.com",
 "password": "password123"
 }
-\`\`\`
+
 
 ### POST /api/login
 
 Login user
-\`\`\`json
+json
 {
 "email": "john@example.com",
 "password": "password123"
 }
-\`\`\`
+
 
 ### GET /api/getProfile
 
@@ -54,25 +54,25 @@ Headers: `Authorization: Bearer <token>`
 
 ### Connection
 
-\`\`\`javascript
+javascript
 const socket = io('http://localhost:3000', {
 auth: {
 token: 'your-jwt-token'
 }
 });
-\`\`\`
+
 
 ### Join Room
 
-\`\`\`javascript
+javascript
 socket.emit('join-room', { roomId: 'room-id' });
-\`\`\`
+
 
 ### Send Message
 
-\`\`\`javascript
+javascript
 socket.emit('send-message', {
 roomId: 'room-id',
 message: 'Hello world!'
 });
-\`\`\`
+

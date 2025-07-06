@@ -6,7 +6,7 @@ The application follows a modular monolithic architecture with clear separation 
 
 ## Architecture Diagram
 
-\`\`\`
+
 ┌─────────────────┐ ┌─────────────────┐ ┌─────────────────┐
 │ Frontend │ │ Load Balancer │ │ nginx │
 │ (React/Vue) │◄──►│ (nginx) │◄──►│ (Optional) │
@@ -24,7 +24,7 @@ The application follows a modular monolithic architecture with clear separation 
 │ MongoDB │ │ RabbitMQ │ │ Redis │
 │ (Port 27017)│ │(Port 5672) │ │(Port 6379) │
 └─────────────┘ └─────────────┘ └─────────────┘
-\`\`\`
+
 
 ## Modules
 

@@ -10,29 +10,29 @@
 
 ### 1. Clone Repository
 
-\`\`\`bash
+bash
 git clone <repository-url>
 cd chat-app
-\`\`\`
+
 
 ### 2. Environment Setup
 
-\`\`\`bash
+bash
 cp .env.example .env
 
 # Edit .env with your configuration
 
-\`\`\`
+
 
 ### 3. Install Dependencies
 
-\`\`\`bash
+bash
 npm install
-\`\`\`
+
 
 ### 4. Run with Docker
 
-\`\`\`bash
+bash
 
 # Development
 
@@ -41,11 +41,11 @@ npm run docker:dev
 # Production
 
 npm run docker:prod
-\`\`\`
+
 
 ### 5. Run Locally
 
-\`\`\`bash
+bash
 
 # Start MongoDB and RabbitMQ
 
@@ -54,11 +54,11 @@ docker-compose up mongodb rabbitmq -d
 # Start application
 
 npm run start:dev
-\`\`\`
+
 
 ## Testing
 
-\`\`\`bash
+bash
 
 # Unit tests
 
@@ -71,4 +71,4 @@ npm run test:e2e
 # Test coverage
 
 npm run test:cov
-\`\`\`
+
