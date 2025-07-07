@@ -9,6 +9,7 @@ Real-time chat application built with NestJS, MongoDB, and Socket.IO.
 - User authentication with JWT
 - Real-time messaging
 - Message queuing with RabbitMQ
+- Automatic zodiac and horoscope generation
 - Docker support
 - Comprehensive testing
 
