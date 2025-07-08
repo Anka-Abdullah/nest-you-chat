@@ -349,3 +349,14 @@ curl -X GET http://localhost:3000/api/getProfile \
 - WebSocket connections require authentication
 - Rate limiting is applied per IP address
 - All API responses include a `success` boolean field
+
+## \ud83d\udce1 WebSocket Testing with Postman
+1. Jalankan aplikasi NestJS Anda.
+2. Di Postman pilih **New** \-> **WebSocket Request**.
+3. Masukkan URL `ws://localhost:3000/socket.io/?EIO=4&transport=websocket`.
+4. Tambahkan header `Authorization: Bearer &lt;token>` bila diperlukan.
+5. Kirim pesan dengan format:
+   ```json
+   { "event": "message", "data": "Hello" }
+   ```
+6. Pesan yang diterima dari server muncul pada panel *Messages*.
