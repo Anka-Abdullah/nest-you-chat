@@ -8,15 +8,29 @@ export class MessagingService implements OnModuleInit, OnModuleDestroy {
   private channel: any = null;
 
   async onModuleInit() {
-    try {
-      const url = process.env.RABBITMQ_URL || 'amqp://localhost:5672';
-      this.connection = await connect(url);
-      this.channel = await this.connection.createChannel();
-      this.logger.log('Connected to RabbitMQ');
-    } catch (error) {
-      this.logger.error('Failed to connect to RabbitMQ', error);
-      throw error;
+    await this.connectWithRetry();
+  }
+
+  async connectWithRetry(retries = 5, delayMs = 5000) {
+    const url = process.env.RABBITMQ_URL ?? 'amqp://localhost:5672';
+    
+    while (retries > 0) {
+      try {
+        this.connection = await connect(url);
+        this.channel = await this.connection.createChannel();
+        this.logger.log('Connected to RabbitMQ');
+        return;
+      } catch (err) {
+        this.logger.warn(`RabbitMQ not ready. Retrying in ${delayMs / 1000}s... (${retries} retries left)`);
+        retries--;
+        
+        if (retries > 0) {
+          await new Promise((res) => setTimeout(res, delayMs));
+        }
+      }
     }
+    
+    throw new Error('Could not connect to RabbitMQ after all retry attempts');
   }
 
   async publish(queue: string, msg: any) {

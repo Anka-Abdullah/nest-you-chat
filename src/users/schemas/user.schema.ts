@@ -14,14 +14,32 @@ export class User {
   @Prop({ required: true })
   password: string;
 
-  @Prop({ required: true })
-  birthDate: Date;
+  @Prop()
+  birthDate?: Date;
 
   @Prop()
-  zodiac: string;
+  zodiac?: string;
 
   @Prop()
-  horoscope: string;
+  horoscope?: string;
+
+  @Prop()
+  height?: number; // in cm
+
+  @Prop()
+  weight?: number; // in kg
+
+  @Prop({ enum: ['male', 'female', 'other'] })
+  gender?: string;
+
+  @Prop()
+  about?: string;
+
+  @Prop([String])
+  interest?: string[];
+
+  @Prop()
+  image?: string; // base64 string
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
