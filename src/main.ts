@@ -1,9 +1,18 @@
+// main.ts
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  // Enable CORS
+  app.enableCors({
+    origin: '*',
+    methods: ['GET', 'POST'],
+    credentials: true,
+  });
+
   app.setGlobalPrefix('api', {
     exclude: ['/', '/health', '/status'],
   });
@@ -15,4 +24,3 @@ async function bootstrap() {
   console.log(`🚀 Application is running on: http://localhost:${port}`);
 }
 bootstrap();
-

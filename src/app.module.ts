@@ -30,6 +30,19 @@ import { AppService } from './app.service';
         return databaseUrl;
       })(),
     ),
+    ClientsModule.register([
+      {
+        name: 'CHAT_SERVICE',
+        transport: Transport.RMQ,
+        options: {
+          urls: ['amqp://localhost:5672'], // Your RabbitMQ URL
+          queue: 'chat_queue', // Queue name
+          queueOptions: {
+            durable: false,
+          },
+        },
+      },
+    ]),
     CommonModule,
     UsersModule,
     AuthModule,

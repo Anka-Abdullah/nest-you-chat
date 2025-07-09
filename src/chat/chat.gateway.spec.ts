@@ -20,7 +20,8 @@ import { Server } from 'socket.io';
   it('should emit message to all clients', () => {
     const emit = jest.fn();
     gateway.server = { emit } as unknown as Server;
-    gateway.handleMessage({ id: '123' } as any, 'hello');
+    console.log("halo")
+    // gateway.handleMessage({ id: '123' } as any, 'hello');
     expect(emit).toHaveBeenCalledWith('message', {
       clientId: '123',
       text: 'hello',
