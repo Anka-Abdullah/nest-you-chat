@@ -21,7 +21,7 @@ services:
 
   mongodb:
     image: mongo:6.0
-    container_name: chat-mongodb-prod
+    container_name: mongodb-prod
     restart: unless-stopped
     ports:
       - '27017:27017'
@@ -36,7 +36,7 @@ services:
 
   rabbitmq:
     image: rabbitmq:3-management-alpine
-    container_name: chat-rabbitmq-prod
+    container_name: rabbitmq-prod
     restart: unless-stopped
     ports:
       - '5672:5672'

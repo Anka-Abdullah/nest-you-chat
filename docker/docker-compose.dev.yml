@@ -5,6 +5,7 @@ services:
     build:
       context: ..
       dockerfile: docker/Dockerfile.dev
+    image: chat-app-img-dev
     container_name: chat-app-dev
     restart: unless-stopped
     ports:
@@ -25,7 +26,7 @@ services:
 
   mongodb:
     image: mongo:6.0
-    container_name: chat-mongodb-dev
+    container_name: mongodb-dev
     restart: unless-stopped
     ports:
       - '27017:27017'
@@ -38,7 +39,7 @@ services:
 
   rabbitmq:
     image: rabbitmq:3-management-alpine
-    container_name: chat-rabbitmq-dev
+    container_name: rabbitmq-dev
     restart: unless-stopped
     ports:
       - '5672:5672'

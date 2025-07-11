@@ -1,18 +1,33 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document, Types } from 'mongoose';
+import { Document } from 'mongoose';
 
 export type MessageDocument = Message & Document;
 
 @Schema({ timestamps: true })
 export class Message {
-  @Prop({ type: Types.ObjectId, ref: 'User', required: true })
-  from: Types.ObjectId;
-
-  @Prop({ type: Types.ObjectId, ref: 'User', required: true })
-  to: Types.ObjectId;
+  @Prop({ required: true })
+  conversationId: string;
 
   @Prop({ required: true })
-  content: string;
+  senderId: string;
+
+  @Prop({ required: true })
+  receiverId: string;
+
+  @Prop({ required: true })
+  text: string;
+
+  @Prop([String])
+  attachments: string[];
+
+  @Prop({ enum: ['sent', 'delivered', 'read'], default: 'sent' })
+  status: string;
+
+  @Prop({ required: true })
+  sentAt: Date;
+
+  @Prop()
+  readAt?: Date;
 }
 
 export const MessageSchema = SchemaFactory.createForClass(Message);
