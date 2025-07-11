@@ -6,10 +6,31 @@ export type ConversationDocument = Conversation & Document;
 @Schema({ timestamps: true })
 export class Conversation {
   @Prop({ required: true })
-  userA: string; // User A (sender)
+  conversationId: string;
 
   @Prop({ required: true })
-  userB: string; // User B (receiver)
+  senderId: string;
+
+  @Prop({ required: true })
+  receiverId: string;
+
+  @Prop({ required: true })
+  text: string;
+
+  @Prop([String])
+  attachments: string[];
+
+  @Prop({ enum: ['sent', 'delivered', 'read'], default: 'sent' })
+  status: string;
+
+  @Prop({ required: true })
+  sentAt: Date;
+
+  @Prop()
+  readAt?: Date;
+
+  @Prop()
+  updatedAt?: Date;
 
   @Prop({
     type: Object,
@@ -18,7 +39,7 @@ export class Conversation {
       text: '',
       sentAt: new Date(),
       senderId: null,
-    }
+    },
   })
   lastMessage: {
     text: string;

@@ -4,8 +4,9 @@ import { ChatService } from './chat.service';
 import { ChatController } from './chat.controller';
 import { ChatGateway } from './chat.gateway';
 import { ChatProcessor } from './chat.processor';
-import { Message, MessageSchema } from './schemas/message.schema';
 import { Conversation, ConversationSchema } from './schemas/conversation.schema';
+import { Message, MessageSchema } from './schemas/message.schema';
+import { MessagingModule } from 'src/messaging/messaging.module';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { Conversation, ConversationSchema } from './schemas/conversation.schema'
       { name: Message.name, schema: MessageSchema },
       { name: Conversation.name, schema: ConversationSchema },
     ]),
+    MessagingModule,
   ],
   providers: [ChatService, ChatGateway, ChatProcessor],
   controllers: [ChatController],
